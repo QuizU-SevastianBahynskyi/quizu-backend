@@ -24,25 +24,27 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: openapi
-          path: openapi
+          path: target/openapi
 
   update-schema-repository:
     needs: build
     runs-on: ubuntu-latest
 
     steps:
-      - name: Download openapi artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: openapi
-          path: ./downloaded_openapi
-
       - name: Checkout schema repository
         uses: actions/checkout@v3
         with:
           repository: 'QuizU-SevastianBahynskyi/quizu-schema'
           token: ${{ secrets.ACCESS_TOKEN }}
 
+      - name: Download openapi artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: openapi
+          path: ./downloaded_openapi
+
+      - name: List files in downloaded_openapi
+        run: ls -R ./downloaded_openapi
 
       - name: Overwrite openapi schema folder
         run: |
