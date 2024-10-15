@@ -24,6 +24,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: openapi
+          path: openapi
 
   update-schema-repository:
     needs: build
