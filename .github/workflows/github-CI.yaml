@@ -59,6 +59,8 @@ jobs:
 
       - name: Commit and push changes
         run: |
+          openapi_diff=$(git diff openapi)
+          echo "------------------ [ $(date) Schema updated ] ------------------\r\t$openapi_diff" >> schema_log.txt
           git add openapi/
           git commit -m "Update openapi schema. Caused by commit ${{ github.sha }}"
           git push https://${{ secrets.ACCESS_TOKEN_GITHUB }}@github.com/QuizU-SevastianBahynskyi/quizu-schema.git HEAD:main
