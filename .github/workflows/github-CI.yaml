@@ -61,4 +61,4 @@ jobs:
         run: |
           git add openapi/
           git commit -m "Update openapi schema. Caused by commit ${{ github.sha }}"
-          git push https://${{ secrets.ACCESS_TOKEN }}@github.com/QuizU-SevastianBahynskyi/quizu-schema.git HEAD:main
+          git push https://${{ secrets.ACCESS_TOKEN_GITHUB }}@github.com/QuizU-SevastianBahynskyi/quizu-schema.git HEAD:main
