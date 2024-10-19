@@ -73,5 +73,5 @@ jobs:
           
           
           git add .
-          git commit -m $COMMMIT_MESSAGE
+          git commit -m "$COMMMIT_MESSAGE"
           git push https://${{ secrets.ACCESS_TOKEN_GITHUB }}@github.com/${ORGANIZATION}/${REPO}.git HEAD:main
