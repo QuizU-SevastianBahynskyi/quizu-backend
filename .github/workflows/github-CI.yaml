@@ -61,7 +61,7 @@ jobs:
         run: |
           REPO=quizu-schema
           ORGANIZATION=QuizU-SevastianBahynskyi
-          SHORT_SHA=${{ github.sha.substring(0, 7) }}
+          SHORT_SHA=$(${{ github.sha }}).substr(0, 7)
           COMMMIT_MESSAGE="Update openapi schema. Caused by $SHORT_SHA"
           
           openapi_diff=$(git diff openapi)
