@@ -64,10 +64,10 @@ jobs:
           COMMMIT_MESSAGE="Update openapi schema. Caused by commit ${{ github.sha }}"
           
           openapi_diff=$(git diff openapi)
-          if [ -z "$openapi_diff" ]; then
-            echo "No changes in openapi schema"
-            exit 0
-          fi
+          #          if [ -z "$openapi_diff" ]; then
+          #            echo "No changes in openapi schema"
+          #            exit 0
+          #          fi
           
           echo -e "------------------------ [ $(date) Schema updated ] ------------------------\r\t${openapi_diff}" >> schema_log.txt
           
