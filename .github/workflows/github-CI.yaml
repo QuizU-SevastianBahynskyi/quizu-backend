@@ -57,10 +57,11 @@ jobs:
           git config user.name "GitHub Action"
           git config user.email "action@example.com"
 
-      - name: Commit and push changes
+      - name: Dispatch update-schema event
         run: |
           REPO=quizu-schema
           ORGANIZATION=QuizU-SevastianBahynskyi
+          COMMMIT_MESSAGE="Update openapi schema. Caused by commit ${{ github.sha }}"
           
           openapi_diff=$(git diff openapi)
           if [ -z "$openapi_diff" ]; then
@@ -68,16 +69,10 @@ jobs:
             exit 0
           fi
           
-          echo -e "------------------ [ $(date) Schema updated ] ------------------\r\t${openapi_diff}" >> schema_log.txt
+          echo -e "------------------------ [ $(date) Schema updated ] ------------------------\r\t${openapi_diff}" >> schema_log.txt
           git add .
-          git commit -m "Update openapi schema. Caused by commit ${{ github.sha }}"
+          git commit -m $COMMMIT_MESSAGE
           git push https://${{ secrets.ACCESS_TOKEN_GITHUB }}@github.com/${ORGANIZATION}/${REPO}.git HEAD:main
-
-      - name: Dispatch update-schema event
-        run: |
-          OWNER=QuizU-SevastianBahynskyi
-          REPO=quizu-schema
-          COMMIT_MESSAGE=$(git log -1 --pretty=%B)
           
           curl -L \
             -X POST \
