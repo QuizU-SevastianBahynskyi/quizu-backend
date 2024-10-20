@@ -1,5 +1,6 @@
 package org.acme.domain.models;
-
+import io.quarkus.mongodb.panache.PanacheMongoEntity;
+import io.quarkus.mongodb.panache.common.MongoEntity;
 import org.acme.domain.exceptions.AnswerOptionAlreadyExistsException;
 
 import java.io.Serializable;
@@ -7,7 +8,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Question implements Serializable {
+@MongoEntity(collection = "question")
+public class Question extends PanacheMongoEntity implements Serializable {
     private String title;
 
     private Set<AnswerOption> answerOptions;

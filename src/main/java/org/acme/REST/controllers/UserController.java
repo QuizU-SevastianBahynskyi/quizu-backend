@@ -8,7 +8,6 @@ import jakarta.ws.rs.PATCH;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.core.Response;
-import org.acme.StartupBean;
 import org.acme.domain.exceptions.RequiredPropertiesMissingException;
 import org.acme.domain.exceptions.UserAlreadyExistsException;
 import org.acme.domain.exceptions.UserNotFoundException;
@@ -28,8 +27,6 @@ public class UserController {
     UserAccountLogicService logicService;
     @Inject
     JsonWebToken jwt;
-    @Inject
-    StartupBean startupBean;
 
     @POST
     @Path("/register")
