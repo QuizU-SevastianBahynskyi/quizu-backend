@@ -7,7 +7,7 @@ public interface UserAccountPersistenceService {
     UserAccount getUserAccount(String email) throws UserNotFoundException;
     void createUserAccount(UserAccount userAccount);
 
-    UserAccount updateUserAccount(String email, UserAccount userAccountUpdateTo) throws UserNotFoundException;
+    void updateUserAccount(String email, UserAccount userAccountUpdateTo) throws UserNotFoundException;
 
     void deleteUserAccount(String email) throws UserNotFoundException;
 

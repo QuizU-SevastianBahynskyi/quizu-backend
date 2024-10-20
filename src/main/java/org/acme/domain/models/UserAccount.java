@@ -1,64 +1,50 @@
 package org.acme.domain.models;
 
 import com.google.gson.Gson;
+import io.quarkus.mongodb.panache.PanacheMongoEntity;
+import io.quarkus.mongodb.panache.PanacheMongoEntityBase;
+import io.quarkus.mongodb.panache.common.MongoEntity;
+import org.bson.codecs.pojo.annotations.BsonId;
 
 import java.io.Serializable;
 import java.util.Optional;
 
-public class UserAccount implements Serializable {
-    private static final Gson gson = new Gson();
-
+@MongoEntity(collection = "user", database = "quizu")
+public class UserAccount {
     private String username;
-    private String email; // TODO: lookup whether quarkus has the email validator
+    private String email;
     private String password;
-
-    public UserAccount() {}
-
-    public UserAccount(String username, String email, String password) {
-        this.username = username;
-        this.email = email;
-        this.password = password;
-    }
-
-    public UserAccount(String email, String password) {
-        this.email = email;
-        this.password = password;
-    }
 
     public String getUsername() {
         return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getPassword() {
         return password;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public void setPassword(String password) {
         this.password = password;
     }
 
-    public boolean hasUsername()
-    {
-        return username != null && !username.isEmpty();
-    }
-
-    public static String toJson(UserAccount userAccount) {
-        return gson.toJson(userAccount);
-    }
-
-    public static UserAccount fromJson(String json) {
-        return gson.fromJson(json, UserAccount.class);
+    @Override
+    public String toString() {
+        return "UserAccount{" +
+                "username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }
