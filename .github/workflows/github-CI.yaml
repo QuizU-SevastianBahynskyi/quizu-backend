@@ -72,7 +72,8 @@ jobs:
           echo -e "------------------------ [ $(date) Schema updated ] ------------------------\r\t${openapi_diff}" >> schema_log.txt
           
           
-          git add .
+          git add openapi
+          git add schema_log.txt
           git commit -m "$COMMMIT_MESSAGE"
           git push https://${{ secrets.ACCESS_TOKEN_GITHUB }}@github.com/${ORGANIZATION}/${REPO}.git HEAD:main
           
